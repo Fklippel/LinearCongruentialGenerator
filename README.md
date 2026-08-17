@@ -1,1 +1,1 @@
-# -LinearCongruentialGenerator
+# LinearCongruentialGenerator
