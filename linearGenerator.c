@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define IA 16807
 #define IM 2147483647
 #define AM (1.0/IM)
@@ -17,4 +19,25 @@ float ram0(long *idum)
     ans=AM*(*idum);
     *idum ^= MASK;
     return ans;
-} 
+}
+
+int main(void)
+{
+    long seed = -1;
+    int n = 1000;
+    FILE *fp;
+
+    fp = fopen("result.txt", "w");
+    if (fp == NULL) {
+        printf("Error.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < n; i++) {
+        float valor = ram0(&seed);
+        fprintf(fp, "%d %f\n", i, valor);
+    }
+
+    fclose(fp);
+    return 0;
+}
